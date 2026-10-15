@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAMA AWARDS 2026 - ARMY Vote Certificate Generator</title>
+<style>
+:root {
+--bg-color: #0f0a1c;
+--card-bg: #1a1528;
+--accent-pink: #ff65a3;
+--accent-purple: #9b51e0;
+--accent-yellow: #ffdf00;
+--text-light: #ffffff;
+--text-dim: #a09ab0;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-light);
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px 10px;
+min-height: 100vh;
+}
+
+.container {
+max-width: 500px;
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.header {
+background: linear-gradient(135deg, #7b2cbf, #ff007f);
+padding: 20px;
+border-radius: 20px;
+text-align: center;
+box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.header h1 {
+font-size: 24px;
+color: #fff;
+margin-bottom: 5px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.header p {
+font-size: 14px;
+color: #ffe6f2;
+}
+
+.section-card {
+background-color: var(--card-bg);
+padding: 18px;
+border-radius: 16px;
+border: 1px solid #2e2640;
+}
+
+.section-title {
+font-size: 16px;
+font-weight: bold;
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 8px;
+color: var(--accent-pink);
+}
+
+.badge-num {
+background-color: var(--accent-pink);
+color: #fff;
+border-radius: 50%;
+width: 22px;
+height: 22px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+}
+
+input[type="text"] {
+width: 100%;
+padding: 12px;
+border-radius: 10px;
+border: 1px solid #3d3356;
+background-color: #120e1e;
+color: white;
+font-size: 14px;
+outline: none;
+}
+
+.member-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 8px;
+}
+
+.member-btn {
+background-color: #251e36;
+border: 2px solid transparent;
+border-radius: 12px;
+padding: 10px 5px;
+color: white;
+text-align: center;
+cursor: pointer;
+font-size: 12px;
+transition: all 0.2s;
+}
+
+.member-btn.active {
+border-color: var(--accent-pink);
+background-color: #3b2850;
+}
+
+.file-upload-area {
+border: 2px dashed #4a3b69;
+padding: 25px;
+border-radius: 12px;
+text-align: center;
+cursor: pointer;
+background-color: #140f21;
+}
+
+.file-upload-area:hover {
+border-color: var(--accent-pink);
+}
+
+#preview-canvas {
+width: 100%;
+border-radius: 16px;
+background-color: #000;
+box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+display: block;
+}
+
+.btn-download {
+background: linear-gradient(135deg, #ff007f, #7b2cbf);
+color: white;
+font-weight: bold;
+font-size: 16px;
+padding: 16px;
+border: none;
+border-radius: 30px;
+width: 100%;
+cursor: pointer;
+box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+margin-top: 10px;
+}
+
+.btn-download:active {
+transform: scale(0.98);
+}
+
+.footer {
+text-align: center;
+font-size: 12px;
+color: var(--text-dim);
+margin-top: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="header">
+<h1>✨ MAMA 2026 ARMY VOTE ✨</h1>
+<p>Hias SS Voting MAMA kamu dengan dekorasi BTS & BT21 yang lucu!</p>
+</div>
+
+<!-- 1. Username -->
+<div class="section-card">
+<div class="section-title">
+<span class="badge-num">1</span> Username Instagram / Twitter
+</div>
+<input type="text" id="usernameInput" placeholder="@username_kamu" value="@ARMY">
+</div>
+
+<!-- 2. Pilih Theme Bias/BT21 -->
+<div class="section-card">
+<div class="section-title">
+<span class="badge-num">2</span> Pilih Theme Bias / BT21
+</div>
+<div class="member-grid">
+<button class="member-btn active" onclick="setMember('JUNGKOOK', this)">🐰 COOKY</button>
+<button class="member-btn" onclick="setMember('V', this)">🐻 TATA</button>
+<button class="member-btn" onclick="setMember('JIMIN', this)">🐥 CHIMMY</button>
+<button class="member-btn" onclick="setMember('JHOPE', this)">🐿️ MANG</button>
+<button class="member-btn" onclick="setMember('SUGA', this)">🐱 SHOOKY</button>
+<button class="member-btn" onclick="setMember('JIN', this)">🐹 RJ</button>
+<button class="member-btn" onclick="setMember('RM', this)">🐨 KOYA</button>
+<button class="member-btn" onclick="setMember('BTS', this)">💜 BTS 7</button>
+</div>
+</div>
+
+<!-- 3. Upload SS -->
+<div class="section-card">
+<div class="section-title">
+<span class="badge-num">3</span> Upload SS Bukti Voting MAMA
+</div>
+<div class="file-upload-area" onclick="document.getElementById('imageUpload').click()">
+<p>📸 Ketuk di sini untuk pilih foto/SS</p>
+<input type="file" id="imageUpload" accept="image/*" style="display: none;">
+</div>
+</div>
+
+<!-- 4. Preview -->
+<div class="section-card">
+<div class="section-title">
+<span class="badge-num">4</span> Hasil Sertifikat Dekorasi
+</div>
+<canvas id="preview-canvas" width="600" height="900"></canvas>
+<button class="btn-download" onclick="downloadImage()">⬇️ DOWNLOAD GAMBAR</button>
+</div>
+
+<div class="footer">
+Made with 💜 for BTS & ARMY • MAMA AWARDS 2026
+</div>
+</div>
+
+<script>
+const canvas = document.getElementById('preview-canvas');
+const ctx = canvas.getContext('2d');
+let userImg = null;
+let selectedMember = 'JUNGKOOK';
+
+const memberThemes = {
+JUNGKOOK: { name: 'Jung Kook (COOKY)', color1: '#ff65a3', color2: '#ff1493', bgGradient: ['#ffb6c1', '#ff1493'], emoji: '🐰' },
+V: { name: 'V (TATA)', color1: '#ff4d4d', color2: '#cc0000', bgGradient: ['#ff9999', '#cc0000'], emoji: '❤️' },
+JIMIN: { name: 'Jimin (CHIMMY)', color1: '#ffcc00', color2: '#ff9900', bgGradient: ['#ffe680', '#ff9900'], emoji: '🐥' },
+JHOPE: { name: 'j-hope (MANG)', color1: '#a64dff', color2: '#6600cc', bgGradient: ['#d9b3ff', '#6600cc'], emoji: '🦄' },
+SUGA: { name: 'SUGA (SHOOKY)', color1: '#d2b48c', color2: '#8b4513', bgGradient: ['#f5de13', '#8b4513'], emoji: '🍪' },
+JIN: { name: 'Jin (RJ)', color1: '#ffffff', color2: '#ffb6c1', bgGradient: ['#ffffff', '#ffb6c1'], emoji: '🦙' },
+RM: { name: 'RM (KOYA)', color1: '#4da6ff', color2: '#0059b3', bgGradient: ['#b3d9ff', '#0059b3'], emoji: '🐨' },
+BTS: { name: 'BTS (ARMY BORAHAE)', color1: '#9b51e0', color2: '#4a00e0', bgGradient: ['#d187f5', '#4a00e0'], emoji: '👑' }
+};
+
+function setMember(memberKey, btn) {
+selectedMember = memberKey;
+document.querySelectorAll('.member-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+renderCanvas();
+}
+
+document.getElementById('usernameInput').addEventListener('input', renderCanvas);
+
+document.getElementById('imageUpload').addEventListener('change', function(e) {
+const file = e.target.files[0];
+if (file) {
+const reader = new FileReader();
+reader.onload = function(event) {
+userImg = new Image();
+userImg.onload = function() {
+renderCanvas();
+};
+userImg.src = event.target.result;
+};
+reader.readAsDataURL(file);
+}
+});
+
+function renderCanvas() {
+const theme = memberThemes[selectedMember];
+const username = document.getElementById('usernameInput').value || '@ARMY';
+
+// 1. Background
+const grad = ctx.createLinearGradient(0, 0, 600, 900);
+grad.addColorStop(0, theme.bgGradient[0]);
+grad.addColorStop(1, theme.bgGradient[1]);
+ctx.fillStyle = grad;
+ctx.fillRect(0, 0, 600, 900);
+
+// 2. Outer Frame Box
+ctx.fillStyle = "#ffffff";
+ctx.roundRect(25, 25, 550, 850, 25);
+ctx.fill();
+
+// Inner Border
+ctx.strokeStyle = theme.color1;
+ctx.lineWidth = 6;
+ctx.stroke();
+
+// 3. Top Banner
+ctx.fillStyle = theme.color1;
+ctx.roundRect(50, 50, 500, 60, 30);
+ctx.fill();
+
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 20px Segoe UI";
+ctx.textAlign = "center";
+ctx.fillText("MAMA AWARDS 2026", 300, 80);
+ctx.font = "14px Segoe UI";
+ctx.fillText(${theme.emoji} ${theme.name} EDITION ${theme.emoji}`, 300, 100);
+
+// 4. SS Proof Placeholder / Image
+const imgX = 60;
+const imgY = 130;
+const imgW = 480;
+const imgH = 640;
+
+if (userImg) {
+ctx.drawImage(userImg, imgX, imgY, imgW, imgH);
+} else {
+ctx.fillStyle = "#f0eaf8";
+ctx.fillRect(imgX, imgY, imgW, imgH);
+ctx.fillStyle = "#705d8f";
+ctx.font = "bold 18px Segoe UI";
+ctx.fillText("UPLOAD BUKTI VOTING SS KAMU", 300, 440);
+}
+
+// Frame around SS
+ctx.strokeStyle = "#333333";
+ctx.lineWidth = 3;
+ctx.strokeRect(imgX, imgY, imgW, imgH);
+
+// 5. Bottom Badges
+// Slogan Badge
+ctx.fillStyle = theme.color2;
+ctx.roundRect(100, 790, 400, 40, 20);
+ctx.fill();
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 15px Segoe UI";
+ctx.fillText("TEAMWORK MAKES THE DREAM WORK 💜", 300, 815);
+
+// Username Watermark
+ctx.fillStyle = "#1a1528";
+ctx.roundRect(180, 840, 240, 30, 15);
+ctx.fill();
+ctx.fillStyle = "#ffffff";
+ctx.font = "14px Segoe UI";
+ctx.fillText(username, 300, 860);
+
+// 6. Draw Cute Stickers / Emojis Around Corners
+ctx.font = "30px Segoe UI";
+ctx.fillText("👑", 55, 145);
+ctx.fillText("💖", 545, 145);
+ctx.fillText("🌸", 55, 765);
+ctx.fillText("✨", 545, 765);
+ctx.fillText("🎵", 300, 150);
+}
+
+function downloadImage() {
+const link = document.createElement('a');
+link.download = BTS_MAMA_Vote_${selectedMember}.png`;
+link.href = canvas.toDataURL('image/png');
+link.click();
+}
+
+// Initial Render
+renderCanvas();
+</script>
+
+</body>
+</html>
