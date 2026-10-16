@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAMA AWARDS 2026 - ARMY Voting Certificate Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg-color: #ffe6f2;
+--card-bg: #ffffff;
+--primary-pink: #ff80bf;
+--dark-pink: #ff3399;
+--text-color: #5c3d52;
+}
+• {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Quicksand', sans-serif;
+}
+body {
+background-color: var(--bg-color);
+background-image: radial-gradient(#ffb3da 15%, transparent 16%);
+background-size: 20px 20px;
+color: var(--text-color);
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px 10px;
+min-height: 100vh;
+}
+.container {
+max-width: 480px;
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+.header {
+background: linear-gradient(135deg, #ff99cc, #ff3399);
+padding: 18px;
+border-radius: 20px;
+text-align: center;
+color: white;
+box-shadow: 0 8px 15px rgba(255, 51, 153, 0.2);
+border: 3px solid #ffffff;
+}
+.header h1 {
+font-family: 'Fredoka One', cursive;
+font-size: 22px;
+letter-spacing: 1px;
+text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+}
+.header p {
+font-size: 13px;
+margin-top: 4px;
+opacity: 0.95;
+}
+.form-card {
+background: var(--card-bg);
+padding: 16px;
+border-radius: 18px;
+border: 2px solid #ffd1dc;
+box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+.section-title {
+font-weight: 700;
+font-size: 14px;
+margin-bottom: 10px;
+color: var(--dark-pink);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.badge {
+background-color: var(--primary-pink);
+color: white;
+border-radius: 50%;
+width: 20px;
+height: 20px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-size: 11px;
+font-family: 'Fredoka One', cursive;
+}
+input[type="text"] {
+width: 100%;
+padding: 12px;
+border-radius: 12px;
+border: 2px solid #ffccd5;
+font-size: 14px;
+outline: none;
+background-color: #fffafc;
+color: #4a2c40;
+font-weight: 600;
+}
+input[type="text"]:focus {
+border-color: var(--dark-pink);
+}
+.options-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 8px;
+}
+.opt-btn {
+background: #fff0f5;
+border: 2px solid #ffccd5;
+border-radius: 12px;
+padding: 8px 4px;
+font-size: 12px;
+font-weight: 700;
+color: #663355;
+cursor: pointer;
+text-align: center;
+transition: all 0.2s;
+}
+.opt-btn.active {
+background: var(--dark-pink);
+color: white;
+border-color: var(--dark-pink);
+transform: scale(1.03);
+}
+.color-options {
+display: flex;
+gap: 10px;
+}
+.color-dot {
+width: 32px;
+height: 32px;
+border-radius: 50%;
+cursor: pointer;
+border: 3px solid white;
+box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+transition: transform 0.2s;
+}
+.color-dot.active {
+transform: scale(1.2);
+border-color: var(--dark-pink);
+}
+.upload-box {
+border: 2px dashed var(--primary-pink);
+padding: 20px;
+border-radius: 12px;
+text-align: center;
+cursor: pointer;
+background: #fffafc;
+color: var(--dark-pink);
+font-weight: 700;
+font-size: 13px;
+}
+canvas {
+width: 100%;
+border-radius: 18px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+border: 4px solid #ffffff;
+display: block;
+}
+.btn-download {
+background: linear-gradient(135deg, #ff3399, #ff66b2);
+color: white;
+font-family: 'Fredoka One', cursive;
+font-size: 16px;
+padding: 16px;
+border: none;
+border-radius: 25px;
+width: 100%;
+cursor: pointer;
+box-shadow: 0 6px 15px rgba(255, 51, 153, 0.3);
+margin-top: 12px;
+letter-spacing: 0.5px;
+}
+.btn-download:active {
+transform: scale(0.98);
+}
+.footer {
+text-align: center;
+font-size: 11px;
+color: #996688;
+margin-top: 10px;
+font-weight: 600;
+}
+</style>
+<style>.lms-source-label {
+position: absolute;
+top: 8px;
+right: 8px;
+background-color: #e0e0e0;
+color: #333;
+border-radius: 10px;
+padding: 4px 4px;
+font-family: sans-serif;
+font-size: 10px;
+pointer-events: none;
+font-weight: 500;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style></head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🎀 MAMA 2026 DEKOR VOTE 🎀</h1>
+<p>Bikin bukti voting MAMA kamu estetik ala Pink ARMY!</p>
+</div>
+<!-- 1. Name Input -->
+<div class="form-card">
+<div class="section-title"><span class="badge">1</span> Nama / Username</div>
+<input type="text" id="nameInput" placeholder="Ketik nama kamu..." value="ALYSHA" maxlength="15">
+</div>
+<!-- 2. Member Selection -->
+<div class="form-card">
+<div class="section-title"><span class="badge">2</span> Pilih Member Foto Top-Left</div>
+<div class="options-grid" id="memberGrid">
+<button class="opt-btn active" onclick="setMember('JUNGKOOK', this)">JUNGKOOK</button>
+<button class="opt-btn" onclick="setMember('V', this)">V</button>
+<button class="opt-btn" onclick="setMember('JIMIN', this)">JIMIN</button>
+<button class="opt-btn" onclick="setMember('JHOPE', this)">J-HOPE</button>
+<button class="opt-btn" onclick="setMember('SUGA', this)">SUGA</button>
+<button class="opt-btn" onclick="setMember('JIN', this)">JIN</button>
+<button class="opt-btn" onclick="setMember('RM', this)">RM</button>
+<button class="opt-btn" onclick="setMember('BTS', this)">BTS 7</button>
+</div>
+</div>
+<!-- 3. BT21 Sticker Selection -->
+<div class="form-card">
+<div class="section-title"><span class="badge">3</span> Pilih Karakter BT21</div>
+<div class="options-grid" id="bt21Grid">
+<button class="opt-btn active" onclick="setBt21('COOKY', this)">🐰 COOKY</button>
+<button class="opt-btn" onclick="setBt21('TATA', this)">❤️ TATA</button>
+<button class="opt-btn" onclick="setBt21('CHIMMY', this)">🐥 CHIMMY</button>
+<button class="opt-btn" onclick="setBt21('MANG', this)">🦄 MANG</button>
+<button class="opt-btn" onclick="setBt21('SHOOKY', this)">🍪 SHOOKY</button>
+<button class="opt-btn" onclick="setBt21('RJ', this)">🦙 RJ</button>
+<button class="opt-btn" onclick="setBt21('KOYA', this)">🐨 KOYA</button>
+<button class="opt-btn" onclick="setBt21('VAN', this)">🤖 VAN</button>
+</div>
+</div>
+<!-- 4. Background Theme -->
+<div class="form-card">
+<div class="section-title"><span class="badge">4</span> Warna Background</div>
+<div class="color-options">
+<div class="color-dot active" style="background: #ffd6e7;" onclick="setColor('#ffd6e7', this)"></div>
+<div class="color-dot" style="background: #e6ccff;" onclick="setColor('#e6ccff', this)"></div>
+<div class="color-dot" style="background: #d4f0ff;" onclick="setColor('#d4f0ff', this)"></div>
+<div class="color-dot" style="background: #fff0c2;" onclick="setColor('#fff0c2', this)"></div>
+<div class="color-dot" style="background: #ffffff;" onclick="setColor('#ffffff', this)"></div>
+</div>
+</div>
+<!-- 5. Upload SS -->
+<div class="form-card">
+<div class="section-title"><span class="badge">5</span> Upload Screenshot MAMA</div>
+<div class="upload-box" onclick="document.getElementById('imageUpload').click()">
+📸 Ketuk di sini untuk upload SS Voting
+<input type="file" id="imageUpload" accept="image/*" style="display: none;">
+</div>
+</div>
+<!-- Preview Canvas -->
+<div class="form-card">
+<div class="section-title"><span class="badge">6</span> Hasil Sertifikat</div>
+<canvas id="previewCanvas" width="540" height="960"></canvas>
+<button class="btn-download" onclick="downloadImage()">💖 DOWNLOAD GAMBAR 💖</button>
+</div>
+<div class="footer">Made with 💜 for ARMY • MAMA AWARDS 2026</div>
+</div>
+<script>
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let ssImage = null;
+let selectedMember = 'JUNGKOOK';
+let selectedBt21 = 'COOKY';
+let bgColor = '#ffd6e7';
+// Member Colors & Emojis
+const memberData = {
+JUNGKOOK: { name: 'JUNGKOOK', color: '#9b51e0', emoji: '🐰' },
+V: { name: 'V', color: '#ff4d4d', emoji: '🐻' },
+JIMIN: { name: 'JIMIN', color: '#ffaa00', emoji: '🐥' },
+JHOPE: { name: 'J-HOPE', color: '#00cc88', emoji: '🐿️' },
+SUGA: { name: 'SUGA', color: '#ff6699', emoji: '🐱' },
+JIN: { name: 'JIN', color: '#ff88cc', emoji: '🐹' },
+RM: { name: 'RM', color: '#3388ff', emoji: '🐨' },
+BTS: { name: 'BTS', color: '#8800cc', emoji: '👑' }
+};
+const bt21Data = {
+COOKY: '🐰', TATA: '❤️', CHIMMY: '🐥', MANG: '🐴',
+SHOOKY: '🍪', RJ: '🦙', KOYA: '🐨', VAN: '🤖'
+};
+function setMember(mem, btn) {
+selectedMember = mem;
+document.querySelectorAll('#memberGrid .opt-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+renderCanvas();
+}
+function setBt21(bt, btn) {
+selectedBt21 = bt;
+document.querySelectorAll('#bt21Grid .opt-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+renderCanvas();
+}
+function setColor(color, dot) {
+bgColor = color;
+document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+dot.classList.add('active');
+renderCanvas();
+}
+document.getElementById('nameInput').addEventListener('input', renderCanvas);
+document.getElementById('imageUpload').addEventListener('change', function(e) {
+const file = e.target.files[0];
+if (file) {
+const reader = new FileReader();
+reader.onload = function(event) {
+ssImage = new Image();
+ssImage.onload = function() {
+renderCanvas();
+};
+ssImage.src = event.target.result;
+};
+reader.readAsDataURL(file);
+}
+});
+function renderCanvas() {
+const nameText = (document.getElementById('nameInput').value || 'ALYSHA').toUpperCase();
+// 1. Background Fill
+ctx.fillStyle = bgColor;
+ctx.fillRect(0, 0, 540, 960);
+// Dripping Melt Effect at Top
+ctx.fillStyle = '#ffffff';
+ctx.beginPath();
+ctx.moveTo(0, 0);
+ctx.lineTo(540, 0);
+ctx.lineTo(540, 60);
+ctx.bezierCurveTo(480, 110, 420, 40, 360, 90);
+ctx.bezierCurveTo(300, 130, 240, 50, 180, 100);
+ctx.bezierCurveTo(120, 140, 60, 50, 0, 80);
+ctx.closePath();
+ctx.fill();
+// Top Logos (BTS & ARMY)
+ctx.fillStyle = '#a862ea';
+ctx.font = 'bold 24px sans-serif';
+ctx.textAlign = 'right';
+ctx.fillText('☖☖ BTS', 510, 45);
+ctx.fillText('☖☖ ARMY', 510, 75);
+// 2. Center SS Proof Area
+const ssX = 70;
+const ssY = 150;
+const ssW = 400;
+const ssH = 650;
+// SS Background White Card
+ctx.fillStyle = '#ffffff';
+ctx.roundRect(ssX, ssY, ssW, ssH, 25);
+ctx.fill();
+if (ssImage) {
+ctx.save();
+ctx.roundRect(ssX, ssY, ssW, ssH, 25);
+ctx.clip();
+ctx.drawImage(ssImage, ssX, ssY, ssW, ssH);
+ctx.restore();
+} else {
+// Placeholder text inside SS
+ctx.fillStyle = '#f0e6f5';
+ctx.roundRect(ssX + 20, ssY + 20, ssW - 40, ssH - 40, 20);
+ctx.fill();
+ctx.fillStyle = '#a882bb';
+ctx.font = '700 18px Quicksand';
+ctx.textAlign = 'center';
+ctx.fillText('UPLOAD BUKTI VOTING SS KAMU', 270, 480);
+}
+// 3. Side Text "ARMY" (Left) and "BTS" (Right) - 3D Bubble Style
+const drawBubbleLetter = (char, x, y) => {
+ctx.font = '900 36px Fredoka One';
+ctx.textAlign = 'center';
+ctx.fillStyle = '#ff3385';
+ctx.fillText(char, x + 3, y + 3);
+ctx.fillStyle = '#ff99cc';
+ctx.fillText(char, x, y);
+ctx.strokeStyle = '#ffffff';
+ctx.lineWidth = 3;
+ctx.strokeText(char, x, y);
+};
+// Left "ARMY"
+['A','R','M','Y'].forEach((letter, i) => {
+drawBubbleLetter(letter, 35, 320 + (i * 65));
+});
+// Right "BTS"
+['B','T','S'].forEach((letter, i) => {
+drawBubbleLetter(letter, 505, 350 + (i * 65));
+});
+// 4. Member Photo Frame (Top Left)
+ctx.save();
+ctx.beginPath();
+ctx.arc(110, 170, 50, 0, Math.PI * 2);
+ctx.fillStyle = '#a862ea';
+ctx.fill();
+ctx.strokeStyle = '#ffffff';
+ctx.lineWidth = 5;
+ctx.stroke();
+ctx.fillStyle = '#ffffff';
+ctx.font = 'bold 35px sans-serif';
+ctx.textAlign = 'center';
+ctx.fillText(memberData[selectedMember].emoji, 110, 182);
+ctx.restore();
+// 5. BT21 Sticker (Top Right & Bottom Right)
+ctx.font = '45px sans-serif';
+ctx.fillText(bt21Data[selectedBt21], 440, 180);
+ctx.font = '35px sans-serif';
+ctx.fillText(bt21Data[selectedBt21], 460, 680);
+// Bottom Left Bunny Sticker
+ctx.font = '30px sans-serif';
+ctx.fillText('🐰✨', 35, 750);
+// 6. Name Pill Box (Bottom)
+const nameY = 840;
+ctx.fillStyle = '#ffe6f0';
+ctx.roundRect(140, nameY, 260, 60, 30);
+ctx.fill();
+ctx.strokeStyle = '#ffffff';
+ctx.lineWidth = 4;
+ctx.stroke();
+// Name Text
+ctx.font = '900 28px Fredoka One';
+ctx.textAlign = 'center';
+ctx.fillStyle = '#802b00';
+ctx.fillText(nameText, 272, nameY + 42);
+ctx.fillStyle = '#a64dff';
+ctx.fillText(nameText, 270, nameY + 40);
+// Bottom Lace Border
+ctx.fillStyle = '#ffb3d9';
+for(let i=0; i<540; i+=30) {
+ctx.beginPath();
+ctx.arc(i+15, 955, 15, 0, Math.PI, true);
+ctx.fill();
+}
+}
+function downloadImage() {
+const link = document.createElement('a');
+link.download = MAMA_Vote_${document.getElementById('nameInput').value || 'ARMY'}.png;
+link.href = canvas.toDataURL('image/png');
+link.click();
+}
+// Initial render
+renderCanvas();
+</script>
+</body></html>
